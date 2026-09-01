@@ -14,23 +14,18 @@ const {
 const router = express.Router();
 
 // Route to CREATE a new company
-// POST /api/companies
 router.post("/", createCompany);
 
 // Route to GET all companies
-// GET /api/companies
 router.get("/", getCompanies);
 
 // Route to GET a single company by its ID
-// GET /api/companies/:id (example: /api/companies/12345)
 router.get("/:id", getCompanyById);
 
 // Route to UPDATE a company by its ID
-// PUT /api/companies/:id (example: /api/companies/12345)
 router.put("/:id", updateCompany);
 
 // Route to DELETE a company by its ID
-// DELETE /api/companies/:id (example: /api/companies/12345)
 router.delete("/:id", deleteCompany);
 
 // Export the router so it can be used in server.js

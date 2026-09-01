@@ -19,10 +19,9 @@ const app = express();
 app.use(express.json());
 
 // Tell the app to use company routes for any URL starting with /api/companies
-// Example: GET /api/companies will fetch all companies
 app.use("/api/companies", companyRoutes);
 
-// Set the port number - use PORT from .env file, or default to 3000
+// Set the port number: use PORT from .env file, or default to 3000
 const PORT = process.env.PORT || 3000;
 
 // Start the server and listen for incoming requests

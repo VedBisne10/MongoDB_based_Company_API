@@ -31,7 +31,7 @@ const companySchema = new mongoose.Schema({
         type: String,
         trim: true       // Removes extra spaces before and after the text
     },
-    // Email address - checks if it's in proper email format (e.g., name@domain.com)
+    // Email address - checks if it's in proper email format
     email: {
         type: String,
         trim: true,      // Removes extra spaces before and after the text

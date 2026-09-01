@@ -1,10 +1,9 @@
 // Import mongoose library to connect with MongoDB database
 const mongoose = require("mongoose");
 
-/**
- * Function to establish connection with MongoDB database
- * This runs when the server starts and connects to the database
- */
+// Function to establish connection with MongoDB database
+// This runs when the server starts and connects to the database
+
 const connectDB = async () => {
     try {
         // Try to connect to MongoDB using the connection string from .env file
