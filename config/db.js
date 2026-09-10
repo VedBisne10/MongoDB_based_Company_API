@@ -11,7 +11,7 @@ const connectDB = async () => {
         if (!process.env.MONGO_URI) {
             throw new Error("MONGO_URI is not defined in .env");
         }    
-        
+
         // Try to connect to MongoDB using the connection string from .env file
         await mongoose.connect(process.env.MONGO_URI);
         
@@ -20,7 +20,7 @@ const connectDB = async () => {
     }
     catch(error){
         // If connection fails, print the error message
-        console.error("MongoDB connection failes: ", error.message);
+        console.error("MongoDB connection fails: ", error.message);
 
         // Exit the application with error code 1 (means something went wrong)
         process.exit(1);
