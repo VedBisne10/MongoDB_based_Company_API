@@ -6,21 +6,24 @@ const companySchema = new mongoose.Schema({
     // Company name field - must be provided, spaces at start/end are removed
     companyName: {
         type: String,
-        required: true,  // This field is mandatory
+        required: [true, "Company name is required"],  // This field is mandatory
         trim: true       // Removes extra spaces before and after the text
     },
+    
     // Category field - tells what type of business this is (e.g., IT, Retail, etc.)
     category: {
         type: String,
-        required: true,  // This field is mandatory
+        required: [true, "Category is required"],  // This field is mandatory
         trim: true       // Removes extra spaces before and after the text
     },
+
     // City field - location of the company
     city: {
         type: String,
-        required: true,  // This field is mandatory
+        required: [true, "City is required"],  // This field is mandatory
         trim: true       // Removes extra spaces before and after the text
     },
+    
     // Name of the person to contact at the company (optional field)
     contactPerson: {
         type: String,
@@ -29,13 +32,21 @@ const companySchema = new mongoose.Schema({
     // Phone number of the company (optional field)
     phone: {
         type: String,
-        trim: true       // Removes extra spaces before and after the text
+        trim: true,       // Removes extra spaces before and after the text
+        match: [
+                /^[0-9+\-\s()]{7,20}$/,
+                "Please provide a valid phone number"
+            ]
     },
+
     // Email address - checks if it's in proper email format
     email: {
         type: String,
         trim: true,      // Removes extra spaces before and after the text
-        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/  // Pattern to validate email format
+        match: [
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 
+            "Please provide a valid email id"
+        ] // Pattern to validate email format
     },
     // Company website URL (optional field)
     website: {

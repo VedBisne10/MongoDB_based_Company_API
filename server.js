@@ -5,6 +5,7 @@ const dotenv = require("dotenv");          // Package to read environment variab
 // Import our custom files
 const connectDB = require("./config/db");              // Function to connect to MongoDB database
 const companyRoutes = require("./routes/companyRoutes"); // All company-related API routes
+const errorHandler = require("./middleware/errorHandler"); // All Error Handlings
 
 // Load environment variables from .env file (like database URL, port number, etc.)
 dotenv.config();
@@ -20,6 +21,17 @@ app.use(express.json());
 
 // Tell the app to use company routes for any URL starting with /api/companies
 app.use("/api/companies", companyRoutes);
+
+// Handles unknown routes
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "Route not found"
+    });
+});
+
+// Handles application errors
+app.use(errorHandler);
 
 // Set the port number: use PORT from .env file, or default to 3000
 const PORT = process.env.PORT || 3000;

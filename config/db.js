@@ -6,6 +6,12 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
     try {
+
+        // Check whether MongoDB connection string exists
+        if (!process.env.MONGO_URI) {
+            throw new Error("MONGO_URI is not defined in .env");
+        }    
+        
         // Try to connect to MongoDB using the connection string from .env file
         await mongoose.connect(process.env.MONGO_URI);
         
