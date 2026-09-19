@@ -20,11 +20,25 @@ const createCompany = async (req, res, next) => {
 // Get all companies
 const getCompanies = async (req, res, next) => {
     try {
-        const { name } = req.query;
+        const { name, city, category } = req.query;
         const filter = {}
         if (name){
             filter.companyName = {
                 $regex: name,
+                $options: "i"
+            };
+        }
+
+        if (city) {
+            filter.city = {
+                $regex: city,
+                $options: "i"
+            };
+        }
+
+        if (category) {
+            filter.category = {
+                $regex: category,
                 $options: "i"
             };
         }
