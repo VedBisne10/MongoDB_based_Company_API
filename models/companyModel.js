@@ -7,7 +7,8 @@ const companySchema = new mongoose.Schema({
     companyName: {
         type: String,
         required: [true, "Company name is required"],  // This field is mandatory
-        trim: true       // Removes extra spaces before and after the text
+        trim: true,       // Removes extra spaces before and after the text
+        minlength: [2, "Company name must be at least 2 characters"]
     },
     
     // Category field - tells what type of business this is (e.g., IT, Retail, etc.)
@@ -52,7 +53,9 @@ const companySchema = new mongoose.Schema({
     website: {
         type: String,
         trim: true       // Removes extra spaces before and after the text
-    }
+    } 
+}, {
+        timestamps: true
 });
 
 // Create and export the Company model so it can be used in other files

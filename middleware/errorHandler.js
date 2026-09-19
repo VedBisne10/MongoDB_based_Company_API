@@ -32,6 +32,15 @@ const errorHandler = (error, req, res, next) => {
         });
     }
 
+    // Handle invalid JSON sent in the request
+    if (error instanceof SyntaxError && error.status === 400) {
+
+        // Send a 400 response because the JSON is incorrect
+        return res.status(400).json({
+            success: false,
+            message: "Invalid JSON format"
+        });
+    }
 
     // If the error is not handled above, treat it as a server error
     // 500 means something went wrong on the server
