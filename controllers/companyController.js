@@ -20,7 +20,17 @@ const createCompany = async (req, res, next) => {
 // Get all companies
 const getCompanies = async (req, res, next) => {
     try {
-        const companies = await Company.find().sort({ createdAt: -1 });
+        const { name } = req.query;
+        const filter = {}
+        if (name){
+            filter.companyName = {
+                $regex: name,
+                $options: "i"
+            };
+        }
+
+        const companies = await (await Company.find(filter)).toSorted({createdAt: -1});
+
 
         res.status(200).json({
             success: true,
